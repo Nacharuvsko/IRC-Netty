@@ -1,0 +1,151 @@
+JFDML JFormDesigner: "7.0.5.4.420" Java: "11.0.14.1" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
+			name: "this"
+			add( new FormComponent( "xyz.winston.irc.client.gui.type.JHintTextField" ) {
+				name: "username"
+				"toolTipText": "user name"
+				"font": &SwingDerivedFont0 new com.jformdesigner.model.SwingDerivedFont( "Arial", 0, 16, true )
+				auxiliary() {
+					"JavaCodeGenerator.customCreateCode": "new JHintTextField(\"User Name (3-16 characters)\");"
+				}
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 10
+				"y": 15
+				"width": 350
+				"height": 20
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "connectButton"
+				"text": "Connect"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "connectAction", true ) )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 370
+				"y": 10
+				"height": 25
+				"width": 130
+			} )
+			add( new FormComponent( "javax.swing.JTextArea" ) {
+				name: "chatLog"
+				"editable": false
+				"font": new com.jformdesigner.model.SwingDerivedFont( null, 0, 4, false )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 10
+				"y": 105
+				"width": 490
+				"height": 365
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "messageInput"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 10
+				"y": 480
+				"width": 405
+				"height": 35
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "sendButton"
+				"text": "Send"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "sendAction", true ) )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 420
+				"y": 480
+				"width": 80
+				"height": 40
+			} )
+			add( new FormComponent( "xyz.winston.irc.client.gui.type.JHintTextField" ) {
+				name: "addressInput"
+				"toolTipText": "address"
+				"font": #SwingDerivedFont0
+				auxiliary() {
+					"JavaCodeGenerator.customCreateCode": "new JHintTextField(\"IP Address (or domain name)\");"
+				}
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 245
+				"height": 20
+				"x": 10
+				"y": 45
+			} )
+			add( new FormComponent( "javax.swing.JSeparator" ) {
+				name: "$separator"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": -5
+				"y": 525
+				"width": 540
+				"height": 3
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "$statusLabel"
+				"text": "Status:"
+				"font": &SwingDerivedFont1 new com.jformdesigner.model.SwingDerivedFont( null, 0, 17, true )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 15
+				"y": 535
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "statusLabel"
+				"text": "IDLE"
+				"font": #SwingDerivedFont1
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 75
+				"y": 535
+			} )
+			add( new FormComponent( "xyz.winston.irc.client.gui.type.JHintTextField" ) {
+				name: "portInput"
+				"font": new com.jformdesigner.model.SwingDerivedFont( "Arial", 0, 16, true )
+				auxiliary() {
+					"JavaCodeGenerator.customCreateCode": "new JHintTextField(\"Port (default: 1337)\");"
+				}
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 265
+				"y": 45
+				"width": 95
+				"height": 20
+			} )
+			add( new FormComponent( "xyz.winston.irc.client.gui.type.JHintTextField" ) {
+				name: "passwordInput"
+				auxiliary() {
+					"JavaCodeGenerator.customCreateCode": "new JHintTextField(\"Password\");"
+				}
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 10
+				"y": 75
+				"width": 350
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "disconnectButton"
+				"text": "Disconnect"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "disconnectAction", true ) )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 130
+				"height": 25
+				"x": 370
+				"y": 40
+			} )
+			add( new FormComponent( "javax.swing.JCheckBox" ) {
+				name: "usingPassword"
+				"text": "Using password"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 370
+				"y": 75
+				"width": 125
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "clearButton"
+				"text": "Clear"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "clearHandler", true ) )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 420
+				"y": 535
+				"height": 30
+				"width": 79
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 510, 575 )
+		} )
+	}
+}

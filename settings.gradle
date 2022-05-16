@@ -1,0 +1,5 @@
+rootProject.name = 'IRC'
+include 'irc-server'
+include 'irc-protocol'
+include 'irc-client'
+
