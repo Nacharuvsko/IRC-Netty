@@ -10,6 +10,8 @@ import xyz.winston.irc.client.connection.type.ConnectionState;
 import xyz.winston.irc.client.gui.GUIHandler;
 import xyz.winston.irc.client.gui.type.PasswordContainer;
 import xyz.winston.irc.protocol.packet.C01PacketClientMessage;
+import xyz.winston.irc.protocol.packet.S01PacketServerMessage;
+import xyz.winston.irc.protocol.packet.S02PacketServerInfo;
 import xyz.winston.nettytransporter.ConnectorClient;
 import xyz.winston.nettytransporter.connection.Connection;
 import xyz.winston.nettytransporter.protocol.packet.PacketProtocol;
@@ -38,7 +40,9 @@ public final class ConnectionManager {
 
     public void initialize() {
         state = ConnectionState.IDLE;
-        PacketProtocol.PLAY.both(30, C01PacketClientMessage.class, C01PacketClientMessage::new);
+        PacketProtocol.PLAY.toServer(30, C01PacketClientMessage.class, C01PacketClientMessage::new);
+        PacketProtocol.PLAY.toClient(31, S01PacketServerMessage.class, S01PacketServerMessage::new);
+        PacketProtocol.PLAY.toClient(32, S02PacketServerInfo.class, S02PacketServerInfo::new);
     }
 
     public @NotNull CompletableFuture<Pair<Boolean, String>> connect(

@@ -6,6 +6,8 @@ import xyz.winston.irc.client.connection.ConnectionManager;
 import xyz.winston.irc.client.gui.GUIFramer;
 import xyz.winston.irc.client.gui.impl.TestClientGui;
 
+import javax.swing.*;
+
 /**
  * Client owo uwu >w<
  * @author winston
@@ -23,11 +25,12 @@ public final class Bootstrap {
         ConnectionManager.IMP.initialize();
 
         framer = new GUIFramer(new TestClientGui());
-        framer.setSize(510, 590);
+        framer.setSize(670, 555);
         framer.setTitle("IRC Client");
         framer.setLocation(500, 500);
         framer.setResizable(false);
         framer.setVisible(true);
+        framer.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
     /** Entry Point */

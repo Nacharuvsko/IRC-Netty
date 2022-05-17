@@ -28,32 +28,27 @@ new FormModel {
 				"height": 25
 				"width": 130
 			} )
-			add( new FormComponent( "javax.swing.JTextArea" ) {
-				name: "chatLog"
-				"editable": false
-				"font": new com.jformdesigner.model.SwingDerivedFont( null, 0, 4, false )
-			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-				"x": 10
-				"y": 105
-				"width": 490
-				"height": 365
-			} )
-			add( new FormComponent( "javax.swing.JTextField" ) {
+			add( new FormComponent( "xyz.winston.irc.client.gui.type.JHintTextField" ) {
 				name: "messageInput"
+				"font": new java.awt.Font( "Arial", 0, 18 )
+				auxiliary() {
+					"JavaCodeGenerator.customCreateCode": "new JHintTextField(\"Enter message\");"
+				}
+				addEvent( new FormEvent( "java.awt.event.KeyListener", "keyTyped", "messageInputKeyTyped", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"x": 10
 				"y": 480
-				"width": 405
-				"height": 35
+				"width": 390
+				"height": 40
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "sendButton"
-				"text": "Send"
+				"text": "S"
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "sendAction", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-				"x": 420
+				"x": 405
 				"y": 480
-				"width": 80
+				"width": 45
 				"height": 40
 			} )
 			add( new FormComponent( "xyz.winston.irc.client.gui.type.JHintTextField" ) {
@@ -69,30 +64,6 @@ new FormModel {
 				"x": 10
 				"y": 45
 			} )
-			add( new FormComponent( "javax.swing.JSeparator" ) {
-				name: "$separator"
-			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-				"x": -5
-				"y": 525
-				"width": 540
-				"height": 3
-			} )
-			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "$statusLabel"
-				"text": "Status:"
-				"font": &SwingDerivedFont1 new com.jformdesigner.model.SwingDerivedFont( null, 0, 17, true )
-			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-				"x": 15
-				"y": 535
-			} )
-			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "statusLabel"
-				"text": "IDLE"
-				"font": #SwingDerivedFont1
-			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-				"x": 75
-				"y": 535
-			} )
 			add( new FormComponent( "xyz.winston.irc.client.gui.type.JHintTextField" ) {
 				name: "portInput"
 				"font": new com.jformdesigner.model.SwingDerivedFont( "Arial", 0, 16, true )
@@ -104,16 +75,6 @@ new FormModel {
 				"y": 45
 				"width": 95
 				"height": 20
-			} )
-			add( new FormComponent( "xyz.winston.irc.client.gui.type.JHintTextField" ) {
-				name: "passwordInput"
-				auxiliary() {
-					"JavaCodeGenerator.customCreateCode": "new JHintTextField(\"Password\");"
-				}
-			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-				"x": 10
-				"y": 75
-				"width": 350
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "disconnectButton"
@@ -128,24 +89,86 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JCheckBox" ) {
 				name: "usingPassword"
 				"text": "Using password"
+				addEvent( new FormEvent( "javax.swing.event.ChangeListener", "stateChanged", "usingPasswordAction", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"x": 370
-				"y": 75
+				"y": 70
 				"width": 125
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "clearButton"
-				"text": "Clear"
+				"text": "C"
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "clearHandler", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-				"x": 420
-				"y": 535
-				"height": 30
-				"width": 79
+				"x": 455
+				"y": 480
+				"height": 40
+				"width": 45
+			} )
+			add( new FormComponent( "xyz.winston.irc.client.gui.type.JHintTextField" ) {
+				name: "passwordInput"
+				auxiliary() {
+					"JavaCodeGenerator.customCreateCode": "new JHintTextField(\"Password\");"
+					"JavaCodeGenerator.postCreateCode": "${field}.setEnabled(false);"
+				}
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 10
+				"y": 70
+				"width": 350
+				"height": 25
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane1"
+				"autoscrolls": true
+				add( new FormComponent( "javax.swing.JTextArea" ) {
+					name: "chatLog"
+					"editable": false
+				} )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 10
+				"y": 105
+				"width": 490
+				"height": 370
+			} )
+			add( new FormComponent( "javax.swing.JSeparator" ) {
+				name: "$vseparator"
+				"orientation": 1
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 505
+				"y": -5
+				"width": 10
+				"height": 540
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "$serverInfoLabel1"
+				"text": "Server information"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 530
+				"y": 0
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane2"
+				add( new FormComponent( "javax.swing.JTextArea" ) {
+					name: "serverInformation"
+					"editable": false
+					"text": "awaiting connection ..."
+				} )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 515
+				"y": 40
+				"width": 145
+				"height": 480
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "$serverInfoLabel2"
+				"text": "(Real time update)"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 530
+				"y": 15
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 510, 575 )
+			"size": new java.awt.Dimension( 670, 530 )
 		} )
 	}
 }

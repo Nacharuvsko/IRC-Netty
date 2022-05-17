@@ -1,43 +1,37 @@
 package xyz.winston.irc.protocol.packet;
 
 import io.netty.buffer.ByteBuf;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.jetbrains.annotations.NotNull;
-import xyz.winston.irc.protocol.processor.IrcClientProcessor;
 import xyz.winston.irc.protocol.processor.IrcProcessor;
+import xyz.winston.irc.protocol.processor.IrcServerProcessor;
 import xyz.winston.nettytransporter.protocol.packet.ChannelProcessorContext;
 import xyz.winston.nettytransporter.protocol.packet.Packet;
 import xyz.winston.nettytransporter.protocol.packet.PacketProcessor;
 import xyz.winston.nettytransporter.protocol.packet.PacketUtils;
 
-/** Packet ID: 30 */
+/** Packet ID: 31 */
 @EqualsAndHashCode(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public final class C01PacketClientMessage extends Packet<IrcProcessor> {
+public final class S01PacketServerMessage extends Packet<IrcProcessor> {
 
-    private String userName;
-    private String messageContent;
+    private String message;
 
     @Override
     public boolean isProcessor(PacketProcessor packetProcessor) {
-        return packetProcessor instanceof IrcClientProcessor;
+        return packetProcessor instanceof IrcServerProcessor;
     }
 
     @Override
     protected void read0(@NotNull ByteBuf byteBuf) {
-        userName = PacketUtils.readString(byteBuf);
-        messageContent = PacketUtils.readString(byteBuf);
+        message = PacketUtils.readString(byteBuf);
     }
 
     @Override
     protected void write0(@NotNull ByteBuf byteBuf) {
-        PacketUtils.writeString(byteBuf, userName);
-        PacketUtils.writeString(byteBuf, messageContent);
+        PacketUtils.writeString(byteBuf, message);
     }
 
     @Override

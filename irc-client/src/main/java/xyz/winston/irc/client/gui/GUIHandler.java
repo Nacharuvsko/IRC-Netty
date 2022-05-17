@@ -92,6 +92,12 @@ public final class GUIHandler {
         });
     }
 
+    public void handleEnterKey() {
+        if (!gui.getMessageInput().hasFocus()) return;
+        val messageInput = gui.getMessageInput().getText();
+        handleSendButton(messageInput);
+    }
+
     public void handleDisconnectButton() {
         if (pendingConnection != null && !pendingConnection.isCancelled() && !pendingConnection.isDone()) {
             logMessage(Level.SYSTEM, "Pending connection aborted");
@@ -120,6 +126,7 @@ public final class GUIHandler {
             final @NonNull String messageRaw
     ) {
         if (!ConnectionManager.IMP.isConnected()) return;
+        if (messageRaw.isEmpty() || messageRaw.isBlank()) return;
         gui.getMessageInput().setText("");
         Connection.sendPacket(new C01PacketClientMessage(
                 ConnectionManager.IMP.getConnectorClient().getServerName(),
@@ -132,6 +139,17 @@ public final class GUIHandler {
     }
 
     // -----------------------------------------------------------
+
+    public void updateServerInformation(
+            final long serverEpoch,
+            final int online
+    ) {
+        val epochStr = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(serverEpoch));
+        gui.getServerInformation().setText(
+                "Server time: \n" + epochStr + "\n-------\n" +
+                "Online: " + online
+        );
+    }
 
     public void logMessage(final @NonNull String message) {
         logMessage(Level.ALL, message);
